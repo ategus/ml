@@ -8,6 +8,7 @@ m = length(y); % number of training examples
 J_history = zeros(num_iters, 1);
 theta_num = length(theta);
 
+
 for iter = 1:num_iters
 
     % ====================== YOUR CODE HERE ======================
@@ -27,14 +28,18 @@ for iter = 1:num_iters
  
 
     t0 = theta_temp(1,1);
-    t0 = t0 - alpha *(1/m)* sum(X * theta -y);
-    theta(1,1) = t0;
-    fprintf('t0 =  %f\n', t0);
+    t0 = t0 - alpha *(1/m)* sum((X * theta -y).*X(:,1));
+    fprintf('X = %f theta = %f y = %f sum = %f\n',X, theta, y,alpha * (1/m)*sum((X * theta -y).*X(:,1))); 
+    disp(theta);
+    disp(y);
+    %fprintf('t0 =  %f\n', t0);
 
     t1 = theta_temp(1,1);
-    t1 = t1 - alpha *(1/m)* sum((X * theta -y));
+    t1 = t1 - alpha *(1/m)* sum((X * theta -y).*X(:,2));
+    %fprintf('t1 =  %f\n', t1);
+
+    theta(1,1) = t0;
     theta(2,1) = t1;
-    fprintf('t1 =  %f\n', t1);
     
     fprintf('theta =  %f\n', theta);
 
